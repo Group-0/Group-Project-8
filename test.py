@@ -206,4 +206,48 @@ else:
 
 
 #Roxanna's Test fo new /keyval/ endpoint POST and GET
-# if (r.status_code == 201 ) and (j['output'] == ):
+#(post)
+#r = requests.get("")
+# j = r.json
+# if (r.status_code == 200 ) and (j['output'] == ):
+    #print("New Key Value Created")
+#else:
+    #print()
+    #count += 1 
+
+#r = requests.get("")
+#if (r.status_code == 409) 
+    #print("Unable to add pair:Key already exists")
+#else: 
+    #print(❌)
+    #count += 1 
+
+#r = requests.get("")
+#if (r.status_code == 400)
+    #print("Unable to add pair: Invalid request")
+#else: 
+    #print(❌)
+    #count += 1 
+
+#(GET)
+#r = requests.get("")
+# j = r.json
+# if (r.status_code == 200 ) and (j['output'] == ):
+    #print("Key Value was succesfully retrieved ")
+#else:
+    #print(❌)
+    #count += 1 
+
+#r = requests.get("")
+#if (r.status_code == 400)
+    #print("Unable to retrieve pair: Invalid request")
+#else: 
+    #print(❌)
+    #count += 1 
+
+# r = requests.get("")
+#if (r.status_code == 400)
+    #print("Unable to retrieve pair: Key does not exist")
+#else: 
+    #print(❌)
+    #count += 1 
