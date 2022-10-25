@@ -227,11 +227,13 @@ else:
     print("Test case did not pass")
     count += 1 
 
-r = requests.get("http://localhost:4000/keyval/testing")
+url = "http://localhost:4000/keyval"
+response = requests.post(url, json={"key": "testing", "value": "newval"})
+response = requests.get("http://localhost:4000/keyval/practice")
 if (r.status_code == 409):
-    print("Unable to add pair: Key already exists")
+    print("✅")
 else: 
-    print("❌")
+    print("Unable to add pair: Key already exists")
     count += 1 
 
 #r = requests.get("")
