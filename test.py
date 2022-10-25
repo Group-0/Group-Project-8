@@ -219,23 +219,23 @@ else:
 
 #Roxanna's Test for new /keyval/ endpoint POST and GET
 #(post)
-#r = requests.get("http://localhost:4000/keyval/testing")
-# j = r.json
-# if (r.status_code == 200 ) and (j['output'] == True ):
-    #print("New Key Value Created")
-#else:
-    #print()
-    #count += 1 
+r = requests.get("http://localhost:4000/keyval/testing")
+j = r.json
+if (r.status_code == 200 ) and (j['result'] == True ):
+    print("New Key Value Created")
+else:
+    print("Test case did not pass")
+    count += 1 
 
-#r = requests.get("http://localhost:4000/keyval/testing")
-#if (r.status_code == 409) 
-    #print("Unable to add pair:Key already exists")
-#else: 
-    #print(❌)
-    #count += 1 
+r = requests.get("http://localhost:4000/keyval/testing")
+if (r.status_code == 409):
+    print("Unable to add pair: Key already exists")
+else: 
+    print("❌")
+    count += 1 
 
 #r = requests.get("")
-#if (r.status_code == 400)
+#if (r.status_code == 400):
     #print("Unable to add pair: Invalid request")
 #else: 
     #print(❌)
