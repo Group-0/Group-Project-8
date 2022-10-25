@@ -203,11 +203,12 @@ else:
 
 # ---------------------------- Project 8 Test Code --------------------------- #
 
-url = "http://localhost:4000/keyval"
-response = requests.post(url, json={"key": "testing", "value": "newval"})
-print(response)
+# url = "http://localhost:4000/keyval"
+# response = requests.post(url, json={"key": "testing", "value": "newval"})
+# print(response)
 
-# response = requests.get("http://localhost:4000/keyval/testing")
+# url = "http://localhost:4000/keyval"
+# response = requests.post(url, json={"key": "testing", "value": "123"})
 # print(response)
 
 print(count)

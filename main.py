@@ -169,12 +169,13 @@ def keyval_post():
   data = request.get_json()
 
   if request.method == 'POST':
+    command = "CREATE " + data["key"] + "/" + data["value"]
     # checks redis database if key already exists
     if r.exists(data["key"]):
       already_exists = {
         "key": data["key"],
         "value": data["value"],
-        "command": "CREATE new-key/new-value",
+        "command": command,
         "result": False,
         "error": "Unable to add pair: key already exists."
       }
@@ -187,15 +188,13 @@ def keyval_post():
       output = {
         "key": key,
         "value": value,
-        "command": "CREATE {key}/{value}",
+        "command": command,
         "result": True,
         "error": ""
       }
       return json.dumps(output)
   
-  # if request.method == 'GET':
-  #   # if key exists
-  #   if r.get()
+
 @app.route("/keyval/<string:str>", methods=['GET'])
 def keyval_get(str):
   if request.method == 'GET':
