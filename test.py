@@ -258,7 +258,7 @@ else:
     #count += 1 
 
 # r = requests.get("")
-#if (r.status_code == 400)
+#if (r.status_code == 404)
     #print("Unable to retrieve pair: Key does not exist")
 #else: 
     #print(❌)
