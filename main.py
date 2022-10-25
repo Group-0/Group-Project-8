@@ -1,5 +1,5 @@
 from ast import And
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import hashlib
 import json
 import sys
@@ -161,7 +161,39 @@ def slack_alert(message):
     return json.dumps(fail)
   return json.dumps(success)
 
+
+# --------------------------------- Project 8 -------------------------------- #
+# Irish's code
+@app.route("/keyval", methods=['POST', 'GET'])
+def keyval():
+  data = request.get_json()
+
+  if request.method == 'POST':
+    
+    # checks redis database if key already exists
+    if r.exists(data["key"]):
+      return jsonify({
+        "key": data["key"],
+        "value": data["value"],
+        "command": "CREATE new-key/new-value",
+        "result": False,
+        "error": "Unable to add pair: key already exists."
+      })
+    else: 
+      r.set(data["key"], data["value"])
+
+      output = jsonify({
+        "key": data["key"],
+        "value": data["value"],
+        "command": "CREATE new-key/new-value",
+        "result": True,
+        "error": ""
+      })
+      return output
+  
+  # if request.method == 'GET':
+  #   # if key exists
+  #   if r.get()
+
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=4000)
-
-@app.route("/keyval")
