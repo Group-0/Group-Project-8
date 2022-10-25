@@ -164,36 +164,65 @@ def slack_alert(message):
 
 # --------------------------------- Project 8 -------------------------------- #
 # Irish's code
-@app.route("/keyval", methods=['POST', 'GET'])
-def keyval():
+@app.route("/keyval", methods=['POST'])
+def keyval_post():
   data = request.get_json()
 
   if request.method == 'POST':
-    
     # checks redis database if key already exists
     if r.exists(data["key"]):
-      return jsonify({
+      already_exists = {
         "key": data["key"],
         "value": data["value"],
         "command": "CREATE new-key/new-value",
         "result": False,
         "error": "Unable to add pair: key already exists."
-      })
-    else: 
-      r.set(data["key"], data["value"])
+      }
+      return json.dumps(already_exists)
+    else:
+      key = data["key"]
+      value = data["value"]
+      r.set(key, value)
 
-      output = jsonify({
-        "key": data["key"],
-        "value": data["value"],
-        "command": "CREATE new-key/new-value",
+      output = {
+        "key": key,
+        "value": value,
+        "command": "CREATE {key}/{value}",
         "result": True,
         "error": ""
-      })
-      return output
+      }
+      return json.dumps(output)
   
   # if request.method == 'GET':
   #   # if key exists
   #   if r.get()
+@app.route("/keyval/<string:str>", methods=['GET'])
+def keyval_get(str):
+  if request.method == 'GET':
+
+    command = "READ value for key " + str
+    # if key exists in redis
+    if r.exists(str):
+      value = r.get(str)
+      output = {
+        "key": str,
+        "value": value,
+        "command": command,
+        "result": True,
+        "error": ""
+      }
+      return json.dumps(output)
+    else:
+      output = {
+        "key": str,          
+        "value": "",
+        "command": command,
+        "result": False,
+        "error": "Unable to read key: key does not exist"
+      }
+      return json.dumps(output)
+      
+
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=4000)

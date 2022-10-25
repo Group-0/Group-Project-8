@@ -220,7 +220,7 @@ else:
 #Roxanna's Test for new /keyval/ endpoint POST and GET
 #(post)
 r = requests.get("http://localhost:4000/keyval/testing")
-j = r.json
+j = r.json()
 if (r.status_code == 200 ) and (j['result'] == True ):
     print("New Key Value Created")
 else:
