@@ -238,9 +238,9 @@ else:
 
 #r = requests.get("")
 #if (r.status_code == 400):
-    #print("Unable to add pair: Invalid request")
+    #print("✅")
 #else: 
-    #print(❌)
+    #print("Unable to add pair: Invalid request")
     #count += 1 
 
 #(GET)
