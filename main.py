@@ -6,6 +6,9 @@ import sys
 import random
 import requests
 import private
+import redis
+
+r = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 app = Flask(__name__)
 url = "https://hooks.slack.com/services/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"
@@ -160,3 +163,5 @@ def slack_alert(message):
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=4000)
+
+@app.route("/keyval")
