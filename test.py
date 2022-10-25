@@ -217,11 +217,11 @@ else:
     print(count, " test cases did not pass.")
 
 
-#Roxanna's Test fo new /keyval/ endpoint POST and GET
+#Roxanna's Test for new /keyval/ endpoint POST and GET
 #(post)
 #r = requests.get("http://localhost:4000/keyval/testing")
 # j = r.json
-# if (r.status_code == 200 ) and (j['output'] == ):
+# if (r.status_code == 200 ) and (j['output'] == True ):
     #print("New Key Value Created")
 #else:
     #print()
