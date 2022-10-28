@@ -220,24 +220,25 @@ else:
 
 #Roxanna's Test for new /keyval/ endpoint POST and GET
 #(post)
-r = requests.get("http://localhost:4000/keyval/testing")
-j = r.json()
-if (r.status_code == 200 ) and (j['result'] == True ):
+url = "http://localhost:4000/keyval"
+response = requests.post(url, json={"key": "testing", "value": "newval"})
+print(response)
+if (response.status_code == 200):
     print("New Key Value Created")
 else:
-    print("Test case did not pass")
+    print("ERROR! Test case did not pass")
     count += 1 
 
 url = "http://localhost:4000/keyval"
-response = requests.post(url, json={"key": "testing", "value": "newval"})
-response = requests.get("http://localhost:4000/keyval/practice")
-if (r.status_code == 409):
-    print("✅")
-else: 
+response = requests.post(url, json={"key": "testing", "value": "125"})
+if (response.status_code == 409):
     print("Unable to add pair: Key already exists")
+else: 
+    print("ERROR! Test case did not pass")
     count += 1 
 
-#r = requests.get("")
+#url = "http://localhost:4000/keyval"
+#response = requests.get("")
 #if (r.status_code == 400):
     #print("✅")
 #else: 
@@ -247,22 +248,22 @@ else:
 #(GET)
 #r = requests.get("")
 # j = r.json
-# if (r.status_code == 200 ) and (j['output'] == ):
+# if (r.status_code == 200 ):
     #print("Key Value was succesfully retrieved ")
 #else:
-    #print(❌)
+    #print("ERROR! Test case did not pass")
     #count += 1 
 
 #r = requests.get("")
-#if (r.status_code == 400)
+#if (r.status_code == 400):
     #print("Unable to retrieve pair: Invalid request")
 #else: 
-    #print(❌)
+    #print("ERROR! Test case did not pass")
     #count += 1 
 
 # r = requests.get("")
-#if (r.status_code == 404)
+#if (r.status_code == 404):
     #print("Unable to retrieve pair: Key does not exist")
 #else: 
-    #print(❌)
+    #print("ERROR! Test case did not pass")
     #count += 1 
