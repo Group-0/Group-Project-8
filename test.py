@@ -265,9 +265,17 @@ else:
 #url = "http://localhost:4000/keyval"
 #response = requests.put(url, json={"key": "testing", "value": "newval"})
 #if (response.status_code == 200):
-#    print("New Key Value Created")
+#    print("New Key Value Updated")
 #else:
-#    print("ERROR! Test case did not pass")
+#    print("ERROR! Invalid request")
+#    count += 1
+#
+#url = "http://localhost:4000/keyval"
+#response = requests.put(url, json={"key": "testing", "value": "120"})
+#if (response.status_code >= 404):
+#    print("New Key Value Updated")
+#else:
+#    print("ERROR! Key does not exist")
 #    count += 1
 
 #(DELETE)
