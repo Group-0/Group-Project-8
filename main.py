@@ -195,7 +195,7 @@ def keyval_post():
       return json.dumps(output)
       
   elif request.method == 'PUT':
-      command = "UPDATE" + data["key"] + "/" + data["value"]
+    command = "UPDATE" + data["key"] + "/" + data["value"]
     if r.exists(data["key"]):
       key = data["key"]
       value = data["value"]
