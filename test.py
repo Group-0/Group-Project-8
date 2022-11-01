@@ -211,13 +211,6 @@ else:
 # response = requests.post(url, json={"key": "testing", "value": "123"})
 # print(response)
 
-print(count)
-if count == 0:
-    print("Keeping it 💯% successful.")
-else:
-    print(count, " test cases did not pass.")
-
-
 #Roxanna's Test for new /keyval/ endpoint POST and GET
 #(post)
 url = "http://localhost:4000/keyval"
@@ -230,7 +223,7 @@ else:
 
 url = "http://localhost:4000/keyval"
 response = requests.post(url, json={"key": "testing", "value": "125"})
-if (response.status_code >= 409):
+if (response.status_code >= 400 and response.status_code <500):
     print("Unable to add pair: Key already exists")
 else: 
     print("ERROR! Test case did not pass")
@@ -245,18 +238,18 @@ else:
     print("ERROR! Test case did not pass")
     count += 1 
 
-url = "http://localhost:4000/keyval"
-response = requests.get(url, json ={"key": "-2" , "value": "..."})
-if (response.status_code >= 400):
+url = "http://localhost:4000/keyval/92"
+response = requests.get(url)
+if (response.status_code <= 400):
     print("Unable to retrieve pair: Invalid request")
 else: 
     print("ERROR! Test case did not pass")
     count += 1 
 
-url = "http://localhost:4000/keyval"
-response = requests.get(url, json = {"key":"practice", "value":"program"})
-if (response.status_code >= 400):
-    print("Key does not exist")
+url = "http://localhost:4000/keyval/program"
+response = requests.get(url)
+if (response.status_code <= 400):
+    print("Unable to retrieve pair: Key does not exist")
 else: 
     print("ERROR! Test case did not pass")
     count += 1 
@@ -279,3 +272,9 @@ else:
 #    count += 1
 
 #(DELETE)
+
+print(count)
+if count == 0:
+    print("Keeping it 💯% successful.")
+else:
+    print(count, " test cases did not pass.")
