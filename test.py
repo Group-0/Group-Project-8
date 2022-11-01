@@ -275,6 +275,23 @@ else:
    count += 1
 
 #(DELETE) Test Cases
+url = "http://localhost:4000/keyval/testdelete"
+response = requests.delete(url)
+j = response.json()
+if (response.status_code >= 400 and response.status_code < 500) or (j["result"] == False):
+    print("Unable to delete key-value pair: Key does not exist ✅")
+else: 
+    print("ERROR! Test case did not pass ❌")
+    count += 1
+
+url = "http://localhost:4000/keyval/testing"
+response = requests.delete(url)
+j = response.json()
+if (response.status_code == 200) or (j["result"] == True):
+    print("Key deleted ✅")
+else: 
+    print("ERROR! Test case did not pass ❌")
+    count += 1
 
 
 if count == 0:

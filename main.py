@@ -245,6 +245,37 @@ def keyval_get(str1):
         "error": "Unable to read key: key does not exist"
       }
       return json.dumps(output)
+
+
+  elif request.method == 'DELETE':
+
+    command = "DELETE value for key " + str1
+
+    if r.exists(str1) == 1:
+      value = r.get(str1)
+
+      r.delete(str1)
+
+      output = {
+        "key": str1,
+        "value": value,
+        "command": command,
+        "result": True,
+        "error": ""
+      }
+      return json.dumps(output)
+
+    elif r.exists(str1) == 0:
+      dne = {
+        "key": str1,
+        "value": "",
+        "command": command,
+        "result": False,
+        "error": "Unable to delete key: key does not exist"
+      }
+      return json.dumps(dne)
+
+
       
 
 
