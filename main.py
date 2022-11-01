@@ -164,7 +164,7 @@ def slack_alert(message):
 
 # --------------------------------- Project 8 -------------------------------- #
 # Irish's code
-@app.route("/keyval", methods=['POST'])
+@app.route("/keyval", methods=['POST', 'PUT'])
 def keyval_post():
   data = request.get_json()
 
@@ -193,9 +193,27 @@ def keyval_post():
         "error": ""
       }
       return json.dumps(output)
-  
+      
+  elif request.method == 'PUT':
+      command = "UPDATE" + data["key"] + "/" + data["value"]
+    if r.exists(data["key"]):
+      key = data["key"]
+      value = data["value"]
+      r.set(key, value)
+      
+      output = {
+        "key": key,
+        "value": value,
+        "command": command,
+        "result": True,
+        "error": ""
+      }
+      return json.dumps(output)
 
-@app.route("/keyval/<string:str>", methods=['GET'])
+
+
+
+@app.route("/keyval/<string:str>", methods=['GET, DELETE'])
 def keyval_get(str):
   if request.method == 'GET':
 
