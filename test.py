@@ -237,26 +237,26 @@ else:
     count += 1 
 
 #(GET)
-url = "http://localhost:4000/keyval"
-response = requests.get(url, json ={"key": "testing", "value": "newval"})
-if (response.status_code == 200 ):
+url = "http://localhost:4000/keyval/testing"
+response = requests.get(url)
+if (response.status_code >= 200 ):
     print("Key Value was succesfully retrieved ")
 else:
     print("ERROR! Test case did not pass")
     count += 1 
 
-url = "http://localhost:4000/keyval"
-response = requests.get(url, json ={"key": "-2" , "value": "..."})
-if (response.status_code >= 400):
+url = "http://localhost:4000/keyval/92"
+response = requests.get(url)
+if (response.status_code == 200):
     print("Unable to retrieve pair: Invalid request")
 else: 
     print("ERROR! Test case did not pass")
     count += 1 
 
-url = "http://localhost:4000/keyval"
-response = requests.get(url, json = {"key":"practice", "value":"program"})
-if (response.status_code >= 400):
-    print("Key does not exist")
+url = "http://localhost:4000/keyval/program"
+response = requests.get(url)
+if (response.status_code == 200):
+    print("Unable to retrieve pair: Key does not exist")
 else: 
     print("ERROR! Test case did not pass")
     count += 1 
