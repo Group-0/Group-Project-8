@@ -249,7 +249,8 @@ else:
 
 url = "http://localhost:4000/keyval/program"
 response = requests.get(url)
-if (response.status_code >= 400 and response.status_code < 500):
+j = response.json()
+if (response.status_code >= 400 and response.status_code < 500) or (j["result"] == False):
     print("Unable to retrieve pair: Key does not exist ✅")
 else: 
     print("ERROR! Test case did not pass ❌")
@@ -265,11 +266,12 @@ else:
    count += 1
 
 url = "http://localhost:4000/keyval"
-response = requests.put(url, json={"key": "testing", "value": "120"})
-if (response.status_code >= 400 and response.status_code <500):
-   print("New Key Value Updated ✅")
+response = requests.put(url, json={"key": "hello", "value": "120"})
+j = response.json()
+if (response.status_code >= 400 and response.status_code < 500) or (j["result"] == False):
+   print("Key does not already exist ✅")
 else:
-   print("ERROR! Test case did not pass: Unable to update key ❌")
+   print("ERROR! Test case did not pass❌")
    count += 1
 
 #(DELETE) Test Cases
