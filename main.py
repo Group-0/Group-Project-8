@@ -196,9 +196,9 @@ def keyval_post():
       
   elif request.method == 'PUT':
     command = "UPDATE" + data["key"] + "/" + data["value"]
+    key = data["key"]
+    value = data["value"]
     if r.exists(data["key"]):
-      key = data["key"]
-      value = data["value"]
       r.set(key, value)
       
       output = {
@@ -209,8 +209,15 @@ def keyval_post():
         "error": ""
       }
       return json.dumps(output)
-
-
+    else:
+      output = {
+        "key": key,
+        "value": value,
+        "command": command,
+        "result": False,
+        "error": "Key does not exist"
+      }
+      return json.dumps(output)
 
 
 @app.route("/keyval/<string:str>", methods=['GET, DELETE'])
