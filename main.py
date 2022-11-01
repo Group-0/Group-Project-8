@@ -220,16 +220,16 @@ def keyval_post():
       return json.dumps(output)
 
 
-@app.route("/keyval/<string:str>", methods=['GET, DELETE'])
-def keyval_get(str):
+@app.route("/keyval/<string:str1>", methods=['GET, DELETE'])
+def keyval_get(str1):
   if request.method == 'GET':
 
-    command = "READ value for key " + str
+    command = "READ value for key " + str1
     # if key exists in redis
-    if r.exists(str):
-      value = r.get(str)
+    if r.exists(str1):
+      value = r.get(str1)
       output = {
-        "key": str,
+        "key": str1,
         "value": value,
         "command": command,
         "result": True,
@@ -238,7 +238,7 @@ def keyval_get(str):
       return json.dumps(output)
     else:
       output = {
-        "key": str,          
+        "key": str1,          
         "value": "",
         "command": command,
         "result": False,
