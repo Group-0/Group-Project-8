@@ -220,7 +220,7 @@ def keyval_post():
       return json.dumps(output)
 
 
-@app.route("/keyval/<string:str1>", methods=['GET, DELETE'])
+@app.route("/keyval/<string:str1>", methods=['GET', 'DELETE'])
 def keyval_get(str1):
   if request.method == 'GET':
 

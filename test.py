@@ -223,7 +223,8 @@ else:
 
 url = "http://localhost:4000/keyval"
 response = requests.post(url, json={"key": "testing", "value": "125"})
-if (response.status_code >= 400 and response.status_code < 500):
+j = response.json()
+if (response.status_code >= 400 and response.status_code < 500) or (j["result"] == False):
     print("Unable to add pair: Key already exists ✅")
 else: 
     print("ERROR! Test case did not pass ❌")
