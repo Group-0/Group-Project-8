@@ -267,7 +267,7 @@ else:
 #if (response.status_code == 200):
 #    print("New Key Value Updated")
 #else:
-#    print("ERROR! Invalid request")
+#    print("Success! New Key Value Created")
 #    count += 1
 #
 #url = "http://localhost:4000/keyval"
