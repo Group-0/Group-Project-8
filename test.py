@@ -230,7 +230,7 @@ else:
 
 url = "http://localhost:4000/keyval"
 response = requests.post(url, json={"key": "testing", "value": "125"})
-if (response.status_code == 409):
+if (response.status_code >= 409):
     print("Unable to add pair: Key already exists")
 else: 
     print("ERROR! Test case did not pass")
@@ -239,7 +239,6 @@ else:
 #(GET)
 url = "http://localhost:4000/keyval"
 response = requests.get(url, json ={"key": "testing", "value": "newval"})
-print(response)
 if (response.status_code == 200 ):
     print("Key Value was succesfully retrieved ")
 else:
@@ -248,8 +247,7 @@ else:
 
 url = "http://localhost:4000/keyval"
 response = requests.get(url, json ={"key": "-2" , "value": "..."})
-print(response)
-if (response.status_code == 405):
+if (response.status_code >= 400):
     print("Unable to retrieve pair: Invalid request")
 else: 
     print("ERROR! Test case did not pass")
@@ -257,8 +255,7 @@ else:
 
 url = "http://localhost:4000/keyval"
 response = requests.get(url, json = {"key":"practice", "value":"program"})
-print(response)
-if (response.status_code == 404):
+if (response.status_code >= 400):
     print("Key does not exist")
 else: 
     print("ERROR! Test case did not pass")
