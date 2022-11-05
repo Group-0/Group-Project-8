@@ -6,3 +6,73 @@ services:
       - "4000"
   redis:
     image: "redis:alpine"
+
+
+paths:
+  /md5/<string>:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json 
+    responses: 
+      200:
+        description: OK
+  /factorial/<int:num>:
+    get: 
+    summary: Returns factorial for number inputted by user 
+    description: 
+    produces: 
+      - application/json
+    responses: 
+      200:
+        description: OK   
+      400: 
+        description: 
+      404: 
+        description: 
+  /fibonacci/<int>:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json
+    responses: 
+      200: 
+        description:
+  /is-prime/<int>:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json
+    responses: 
+      200: 
+        description:
+  /slack-alert/<string>:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json
+    responses: 
+      200: 
+        description:  
+  /keyval:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json
+    responses: 
+      200: 
+        description:
+  /keyval/<string>:
+    get:
+    summary: 
+    description:
+    produces:
+      - application/json
+    responses: 
+      200: 
+        description:
