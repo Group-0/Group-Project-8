@@ -9,3 +9,8 @@ services:
     image: "redis:alpine"
 
 
+volumes: 
+  - 
+  -  
+networks: 
+  - 
