@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  our-flask-app: 
+   # '.' represents the current directory in which docker-compose.yml is present.
+    build: .
+    image: flask-image
+    volumes: 
+      - "app:/src/app" #change to actual host directory path
+    networks:
+      - default   #update
+    ports: 
+      - "4000:80"
+    links: 
+      - redis 
+  
+  redis: 
+    image: #redis container image name
+    volumes:
+      - #/host/path:/container/path
+    networks:
+      - default #update
+    ports: 
+      - "4000:80"
+
