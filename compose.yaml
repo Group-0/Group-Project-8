@@ -1,16 +1,11 @@
-
-version: ""
-services: 
-  web: 
-    build: 
-    ports:
-      - "4000"
-  redis:
-    image: "redis:alpine"
-
-
-volumes: 
-  - 
-  -  
-networks: 
-  - 
+version: "3.7"
+services:
+  our-app: 
+    build: /path/to/Dockerfile/
+    image: flask-image
+  ports: 
+  - "4000:80"
+volumes:
+  ...
+networks:
+  ...
