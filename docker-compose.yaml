@@ -1,24 +1,34 @@
-version: "3.7"
+version: "3.9"
 services:
-  our-flask-app: 
-   # '.' represents the current directory in which docker-compose.yml is present.
-    build: .
-    image: flask-image
-    volumes: 
-      - "app:/src/app" #change to actual host directory path
-    networks:
-      - default   #update
-    ports: 
+  web:
+    # replace username/repo:tag with your name and image details
+    image: username/repo:tag
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    ports:
       - "4000:80"
+    networks:
+      - webnet
     links: 
       - redis 
   
   redis: 
-    image: #redis container image name
+    image: "redis:alpine"
     volumes:
       - #/host/path:/container/path
     networks:
-      - default #update
+      - default 
     ports: 
       - "4000:80"
 
+  logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
