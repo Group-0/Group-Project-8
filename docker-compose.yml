@@ -23,7 +23,7 @@ services:
       - redis 
   
   redis: 
-    image: "redis:alpine"
+    image: "redis:latest"
     volumes:
       - "./data:/data"
     networks:
