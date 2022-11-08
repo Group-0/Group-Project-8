@@ -15,6 +15,11 @@ services:
       - "4000:80"
     networks:
       - webnet
+    logging:
+        driver: "json-file"
+        options:
+          max-size: "200k"
+          max-file: "10"
     links: 
       - redis 
   
@@ -26,9 +31,9 @@ services:
       - default 
     ports: 
       - "4000:80"
-
-  logging:
+    logging:
         driver: "json-file"
         options:
           max-size: "200k"
           max-file: "10"
+  
