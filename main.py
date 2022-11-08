@@ -8,7 +8,7 @@ import requests
 import private
 import redis
 
-r = redis.Redis(host='127.0.0.1', port=6379, decode_responses=True)
+r = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 app = Flask(__name__)
 url = "https://hooks.slack.com/services/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"
