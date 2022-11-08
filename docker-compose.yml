@@ -1,7 +1,8 @@
 version: "3.9"
+
 services:
   web:
-    image: irishmay/proj9:latest
+    build: .
     # deploy:
     #   replicas: 5
     #   resources:
@@ -13,7 +14,7 @@ services:
     ports:
       - "4000:4000"
     networks:
-      - default
+      - mynet
     # logging:
     #     driver: "json-file"
     #     options:
@@ -22,14 +23,15 @@ services:
     links: 
       - redis 
   
-  redis: 
+  redis-server: 
     image: "redis:latest"
     volumes:
       - "./data:/data"
     networks:
-      - default 
-    ports: 
-      - "6379:6379"
+      - mynet
+
+networks:
+  mynet:
 
   # logging:
   #       driver: "json-file"
