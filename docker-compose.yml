@@ -13,12 +13,12 @@ services:
     ports:
       - "4000:80"
     networks:
-      - webnet
-    logging:
-        driver: "json-file"
-        options:
-          max-size: "200k"
-          max-file: "10"
+      - default
+    # logging:
+    #     driver: "json-file"
+    #     options:
+    #       max-size: "200k"
+    #       max-file: "10"
     links: 
       - redis 
   
@@ -31,9 +31,9 @@ services:
     ports: 
       - "6379:6379"
 
-  logging:
-        driver: "json-file"
-        options:
-          max-size: "200k"
-          max-file: "10"
+  # logging:
+  #       driver: "json-file"
+  #       options:
+  #         max-size: "200k"
+  #         max-file: "10"
   
