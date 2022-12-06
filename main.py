@@ -1,5 +1,5 @@
 from ast import And
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, abort
 import hashlib
 import json
 import sys
@@ -179,7 +179,7 @@ def keyval_post():
         "result": False,
         "error": "Unable to add pair: key already exists."
       }
-      return make_response(jsonify(already_exists), 409)
+      return json.dumps(already_exists), abort(409)
     else:
       key = data["key"]
       value = data["value"]
