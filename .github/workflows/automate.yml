@@ -31,7 +31,7 @@ jobs:
     - name: Run API Test
       run: |
         pip install flask
-        python test.py
+        python test.py --port 4000 --host localhost
 
     - name: Build & Push the Docker image
       run: |
