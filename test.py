@@ -241,7 +241,7 @@ else:
 
 url = "http://34.134.70.125:4000/keyval/92"
 response = requests.get(url)
-if (response.status_code >= 400 and response.status_code < 500):
+if (response.status_code >= 400 and response.status_code < 500) or (j["result"] == False):
     print("Unable to retrieve pair: Invalid request ✅")
 else: 
     print("ERROR! Test case did not pass ❌")
