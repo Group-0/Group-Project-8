@@ -179,8 +179,7 @@ def keyval_post():
         "result": False,
         "error": "Unable to add pair: key already exists."
       }
-      # return json.dumps(already_exists)
-      return data.status(400).json(already_exists)
+      return json.dumps(already_exists), 400
     else:
       key = data["key"]
       value = data["value"]
