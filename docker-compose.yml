@@ -7,17 +7,16 @@ services:
       - "4000:4000"
     networks:
       - mynet
-    # logging:
-    #     driver: "json-file"
-    #     options:
-    #       max-size: "200k"
-    #       max-file: "10"
+    logging:
+        driver: "gcplogs"
     depends_on:
       - redis-server
   
   redis-server: 
     image: "redis:latest"
     #command: redis-server
+    logging:
+        driver: "gcplogs"
     networks:
       - mynet
 
