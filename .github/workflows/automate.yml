@@ -23,7 +23,6 @@ jobs:
       env:
         SLACK_URL: ${{ secrets.SLACK_URL_DEV }}
       run: |
-        cd Group-Project-8
         docker compose up -d 
 
     - name: Verify that the correct containers are running 
