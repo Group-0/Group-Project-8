@@ -1,0 +1,40 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build the Flask API Docker image
+      run: |
+        docker build -t irishmay/project-12 . 
+          
+    - name: Launch the service using docker-compose 
+      env:
+        SLACK_URL: ${{ secrets.SLACK_URL_DEV }}
+      run: |
+        cd Group-Project-8
+        docker compose up -d 
+
+    - name: Verify that the correct containers are running 
+      run: docker ps 
+      
+    - name: Run API Test
+      run: |
+        python test.py --port 4000 --host localhost
+
+    - name: Build & Push the Docker image
+      run: |
+        echo "${{ secrets.DOCKERPW }}" | docker login -u "irishmay" --password-stdin
+        docker image build -t irishmay/project-12:latest .
+        docker push irishmay/project-12:latest
