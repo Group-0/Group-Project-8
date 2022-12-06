@@ -7,16 +7,16 @@ services:
       - "4000:4000"
     networks:
       - mynet
-    logging:
-        driver: "gcplogs"
+    # logging:
+    #     driver: "gcplogs"
     depends_on:
       - redis-server
   
   redis-server: 
     image: "redis:latest"
     #command: redis-server
-    logging:
-        driver: "gcplogs"
+    # logging:
+    #     driver: "gcplogs"
     networks:
       - mynet
 
